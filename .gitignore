@@ -1,0 +1,13 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+uploads/
+knowledge_base/admin_uploads/
+logs/
+.idea/
+.env
+.idea/
+.env
+.idea/
+.idea/

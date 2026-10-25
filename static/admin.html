@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Банк России — Админ-панель</title>
+<style>
+:root{--ink:#253247;--muted:#7d8999;--blue:#1976dc;--pale:#edf5ff;--line:#e5ebf2;--bg:#f8fafc;--danger:#bf514b;--ease:cubic-bezier(.2,.75,.25,1)}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{font:14px/1.5 Inter,"Segoe UI",system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg)}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #9dcaff;outline-offset:2px}
+.app{height:100%;min-height:0;display:grid;grid-template-columns:244px minmax(0,1fr)}.sidebar{display:flex;flex-direction:column;padding:20px 14px 16px;background:#fff;border-right:1px solid var(--line)}.brand{height:42px;display:flex;align-items:center;padding:0 8px;margin-bottom:26px}.brand img{width:154px;max-height:38px;object-fit:contain;object-position:left center}.nav{display:grid;gap:5px}.nav a{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:9px;color:#5f6d80;text-decoration:none;font-size:13px;transition:background .2s,color .2s}.nav a:hover{background:#f5f8fc;color:var(--blue)}.nav a.active{background:#eaf3ff;color:#276fbd;font-weight:600}.nav-icon{width:16px;text-align:center}.side-foot{margin-top:auto;padding:10px 8px;color:#8b96a5;font-size:11px;line-height:1.55}
+.main{min-width:0;min-height:0;overflow-y:auto;padding:25px clamp(18px,3.1vw,44px) 32px}.topline{display:flex;align-items:center;gap:8px;margin:0 0 17px 3px;font-size:12px;font-weight:650}.online{display:inline-block;width:6px;height:6px;border-radius:50%;background:#2ab67a;box-shadow:0 0 0 3px #e4f7ed}.admin-form{display:grid;grid-template-columns:minmax(180px,1fr) minmax(220px,1.35fr) 170px;align-items:end;gap:14px;padding:18px 20px 19px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 4px 15px rgba(25,45,75,.035);animation:rise .35s var(--ease) both}.form-heading{grid-column:1/-1;margin-bottom:-4px}.form-heading h1{margin:0;font-size:17px;letter-spacing:-.015em}.form-heading p{margin:3px 0 0;color:var(--muted);font-size:11px}.field{min-width:0}.field label{display:block;margin:0 0 6px;color:#6f7d90;font-size:11px;font-weight:600}.field input[type=password],.field input[type=file]{display:block;width:100%;min-height:37px;padding:8px 10px;border:1px solid #dfe6ee;border-radius:8px;background:#fbfcfe;color:var(--ink);font-size:12px;transition:border-color .2s,box-shadow .2s}.field input:focus{outline:0;border-color:#8dbcf0;box-shadow:0 0 0 3px #1976dc14;background:#fff}.field input[type=file]{padding:5px;font-size:11px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:37px;padding:9px 14px;border:1px solid transparent;border-radius:8px;font-size:12px;font-weight:600;transition:transform .2s,background .2s,box-shadow .2s,border-color .2s}.btn:active{transform:scale(.98)}.btn-primary{background:var(--blue);color:#fff;box-shadow:0 3px 8px #1976dc1c}.btn-primary:hover{background:#1268c5;box-shadow:0 5px 12px #1976dc28;transform:translateY(-1px)}.btn:disabled{opacity:.55;cursor:wait;transform:none}
+.database-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;margin-top:20px;align-items:stretch}.panel{min-width:0;min-height:300px;padding:17px 17px 19px;background:#fff;border:1px solid var(--line);border-radius:15px;box-shadow:0 4px 15px rgba(25,45,75,.025);animation:rise .4s var(--ease) both}.panel:nth-child(2){animation-delay:.07s}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}.panel-head h2{margin:0;font-size:13px;font-weight:700}.count{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 7px;border-radius:20px;background:#f0f5fb;color:#7b8a9e;font-size:10px;font-weight:650}.panel-note{margin:-7px 0 12px;color:#a0a9b6;font-size:10px}.list{display:flex;flex-direction:column;gap:9px}.empty{padding:15px 12px;border:1px dashed #e2e8ef;border-radius:10px;color:#8995a5;font-size:12px;text-align:center}.item{display:flex;align-items:center;gap:12px;min-width:0;padding:12px 12px;border:1px solid #e7ecf2;border-radius:11px;background:#fbfcfe;transition:transform .2s,border-color .2s,box-shadow .2s,background .2s;animation:rise .25s var(--ease) both}.item:hover{transform:translateY(-1px);border-color:#d4e3f4;background:#fff;box-shadow:0 4px 12px #2532470a}.file-icon{display:grid;place-items:center;flex:none;width:34px;height:38px;border:1px solid #e1ebf7;border-radius:8px;background:#f0f6ff;color:#5284bc;font-size:10px;font-weight:750;letter-spacing:.02em}.item-info{flex:1;min-width:0}.item-name{overflow-wrap:anywhere;font-size:12px;font-weight:650;line-height:1.4}.item-meta{display:flex;flex-wrap:wrap;gap:5px 8px;margin-top:3px;color:#8a96a6;font-size:10px}.badge{display:inline-flex;align-items:center;padding:3px 7px;border-radius:6px;background:#edf6ff;color:#6085ad;font-size:9px;white-space:nowrap}.btn-delete{flex:none;padding:6px 9px;border:1px solid #f0d8d6;border-radius:7px;background:#fff8f7;color:#b7544d;font-size:9px;font-weight:700;letter-spacing:.02em;transition:background .2s,border-color .2s,color .2s}.btn-delete:hover{background:#fff0ef;border-color:#e8bdb9;color:#a43832}.toolbar{display:flex;justify-content:flex-end;margin-top:13px}.btn-secondary{border-color:#e1e7ef;background:#fff;color:#65758a}.btn-secondary:hover{border-color:#bcd5f0;background:#f5f9ff;color:#246fba}.result{display:none;margin-top:15px;padding:11px 14px;border-radius:9px;font-size:12px;animation:rise .25s ease both}.result.ok{display:block;border:1px solid #cce9d8;background:#f0faf4;color:#267c4c}.result.err{display:block;border:1px solid #f0d1ce;background:#fff5f4;color:#b24740}.result.info{display:block;border:1px solid #d7e7f9;background:#f3f8ff;color:#4777a8}
+@keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}@media(max-width:980px){.admin-form{grid-template-columns:1fr 1fr}.form-heading{grid-column:1/-1}.admin-form .btn-primary{grid-column:1/-1}.database-grid{grid-template-columns:1fr}.panel{min-height:180px}}@media(max-width:700px){.app{grid-template-columns:1fr}.sidebar{display:none}.main{padding:17px 13px 24px}.admin-form{grid-template-columns:1fr;padding:16px}.form-heading,.admin-form .btn-primary{grid-column:auto}.database-grid{gap:12px;margin-top:13px}.panel{padding:14px}.topline{margin-bottom:12px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><img src="/static/bank-logo.svg" alt="Банк России"></div>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="/"><span class="nav-icon">▣</span>Чат-бот</a>
+      <a href="/admin" class="active" aria-current="page"><span class="nav-icon">▱</span>Админ-панель</a>
+    </nav>
+    <div class="side-foot">Внутренний сервис<br>Версия демо · 2026</div>
+  </aside>
+  <main class="main">
+    <div class="topline">Банк России <span class="online" aria-label="В сети"></span></div>
+    <form class="admin-form" id="admin-form">
+      <div class="form-heading"><h1>Администрирование базы знаний</h1><p>Управляйте документами, используемыми помощником для поиска требований.</p></div>
+      <div class="field"><label for="token">Токен администратора</label><input id="token" type="password" placeholder="Введите ADMIN_TOKEN" autocomplete="current-password"></div>
+      <div class="field"><label for="file">Документ базы знаний · PDF, DOCX, TXT, MD</label><input id="file" type="file" accept=".pdf,.docx,.txt,.md"></div>
+      <button id="upload" class="btn btn-primary" type="submit"><span aria-hidden="true">↑</span> Загрузить в базу</button>
+    </form>
+    <div class="database-grid">
+      <section class="panel">
+        <div class="panel-head"><h2>Встроенные БД</h2><span class="count" id="builtin-count">—</span></div>
+        <p class="panel-note">Системные документы · только для чтения</p>
+        <div id="builtin-list" class="list"><div class="empty">Загрузка списка…</div></div>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><h2>Загруженные БД</h2><span class="count" id="files-count">—</span></div>
+        <div id="files" class="list"><div class="empty">Введите токен администратора, чтобы загрузить список.</div></div>
+        <div class="toolbar"><button id="refresh" class="btn btn-secondary" type="button"><span aria-hidden="true">↻</span> Обновить список</button></div>
+      </section>
+    </div>
+    <div id="result" class="result" role="status" aria-live="polite"></div>
+  </main>
+</div>
+<script>
+const $=id=>document.getElementById(id),token=()=>({'X-Admin-Token':$('token').value});
+const fmt=n=>n>1048576?(n/1048576).toFixed(1)+' МБ':Math.max(1,Math.round(n/1024))+' КБ';
+const pretty=n=>{n=String(n||'').replace(/_+/g,' ').replace(/\s+/g,' ').trim();return n.charAt(0).toUpperCase()+n.slice(1)};
+const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e};
+let noticeTimer;
+function out(message,kind){const d=$('result');d.textContent=message;d.className='result '+(kind===true?'ok':kind===false?'err':'info');d.style.display='block';clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>{d.style.display='none'},6000)}
+async function detail(r){try{return(await r.json()).detail||'Не удалось выполнить запрос'}catch{return'Ошибка '+r.status}}
+function fileIcon(name){const ext=(String(name).split('.').pop()||'FILE').toUpperCase();return ['PDF','DOCX','TXT','MD'].includes(ext)?ext.slice(0,4):'FILE'}
+function empty(box,message){box.replaceChildren(el('div',message,'empty'))}
+async function loadBuiltIn(){const box=$('builtin-list');try{const r=await fetch('/api/admin/kb',{headers:token()});if(!r.ok){empty(box,'Нет доступа. Введите токен администратора.');$('builtin-count').textContent='—';return}const docs=(await r.json()).documents||[];box.replaceChildren();$('builtin-count').textContent=docs.length;if(!docs.length){empty(box,'Встроенных документов пока нет.');return}docs.forEach(d=>{const item=el('article',undefined,'item'),icon=el('div','KB','file-icon'),info=el('div',undefined,'item-info'),name=el('div',pretty(d.document),'item-name'),meta=el('div',undefined,'item-meta');meta.append(el('span','Версия '+(d.version||'—')),el('span','·'),el('span',(d.chunks??0)+' положений'));info.append(name,meta);item.append(icon,info,el('span','Системная','badge'));box.append(item)})}catch(e){empty(box,'Не удалось загрузить встроенную базу. Проверьте соединение.');$('builtin-count').textContent='—'}}
+async function loadFiles(){const box=$('files');if(!$('token').value.trim()){empty(box,'Введите токен администратора, чтобы загрузить список.');$('files-count').textContent='—';return}try{const r=await fetch('/api/admin/files',{headers:token()});if(!r.ok){empty(box,'Ошибка доступа. Проверьте токен администратора.');$('files-count').textContent='—';return}const files=(await r.json()).files||[];box.replaceChildren();$('files-count').textContent=files.length;if(!files.length){empty(box,'Загруженных документов пока нет.');return}files.forEach(f=>{const item=el('article',undefined,'item'),icon=el('div',fileIcon(f.name),'file-icon'),info=el('div',undefined,'item-info'),name=el('div',pretty(f.name),'item-name'),meta=el('div',undefined,'item-meta'),del=el('button','Удалить','btn-delete');meta.append(el('span',fmt(f.size)));info.append(name,meta);del.type='button';del.setAttribute('aria-label','Удалить '+f.name);del.onclick=async()=>{if(!confirm('Удалить «'+pretty(f.name)+'» из базы знаний?'))return;del.disabled=true;try{const d=await fetch('/api/admin/files/'+encodeURIComponent(f.id),{method:'DELETE',headers:token()});if(d.ok){const j=await d.json();out('Файл «'+pretty(j.filename||f.name)+'» удалён. Положений в базе: '+(j.chunks??'—'),true);await Promise.all([loadFiles(),loadBuiltIn()])}else out(await detail(d),false)}catch(e){out('Ошибка удаления: '+e.message,false)}finally{del.disabled=false}};item.append(icon,info,del);box.append(item)})}catch(e){empty(box,'Не удалось загрузить список. Проверьте соединение.');$('files-count').textContent='—'}}
+async function refresh(){const b=$('refresh');b.disabled=true;try{await Promise.all([loadBuiltIn(),loadFiles()]);out('Списки базы знаний обновлены.',true)}finally{b.disabled=false}}
+$('refresh').onclick=refresh;
+$('token').addEventListener('change',()=>{if($('token').value.trim()){loadBuiltIn();loadFiles()}});
+$('admin-form').addEventListener('submit',async e=>{e.preventDefault();const f=$('file').files[0];if(!f){out('Сначала выберите файл для загрузки.',false);return}if(!/\.(pdf|docx|txt|md)$/i.test(f.name)){out('Поддерживаются файлы PDF, DOCX, TXT и MD.',false);return}const button=$('upload');button.disabled=true;button.textContent='Загрузка…';const data=new FormData();data.append('file',f);try{const r=await fetch('/api/admin/upload',{method:'POST',headers:token(),body:data});if(!r.ok){out(await detail(r),false);return}const j=await r.json();out('Файл «'+pretty(j.filename||f.name)+'» загружен. Положений в базе: '+(j.chunks??'—'),true);$('file').value='';await Promise.all([loadFiles(),loadBuiltIn()])}catch(err){out('Не удалось загрузить файл: '+err.message,false)}finally{button.disabled=false;button.innerHTML='<span aria-hidden="true">↑</span> Загрузить в базу'}});
+loadBuiltIn();
+</script>
+</body>
+</html>

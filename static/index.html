@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Банк России — Помощник по документам</title>
+<style>
+:root{--ink:#253247;--muted:#7c899a;--blue:#1976dc;--blue-dark:#1265bd;--pale:#edf5ff;--line:#e6ebf1;--bg:#f8fafc;--white:#fff;--radius:14px;--ease:cubic-bezier(.2,.75,.25,1)}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{font:14px/1.5 Inter,"Segoe UI",system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg)}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #9dcaff;outline-offset:2px}.q:focus,.q:focus-visible{outline:none}
+.app{height:100%;min-height:0;display:grid;grid-template-columns:244px minmax(0,1fr)}.sidebar{background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;padding:20px 14px 16px;z-index:2}.brand{height:42px;display:flex;align-items:center;padding:0 8px;margin-bottom:26px}.brand img{width:154px;max-height:38px;object-fit:contain;object-position:left center}.nav{display:grid;gap:5px}.nav a{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:9px;color:#5f6d80;text-decoration:none;font-size:13px;transition:background .2s,color .2s,transform .2s}.nav a:hover{background:#f5f8fc;color:var(--blue)}.nav a.active{background:#eaf3ff;color:#276fbd;font-weight:600}.nav-icon{width:16px;text-align:center;color:currentColor;font-size:15px}.side-foot{margin-top:auto;padding:10px 8px;color:#8b96a5;font-size:11px;line-height:1.55}
+.main{display:flex;flex-direction:column;min-width:0;min-height:0}.topbar{height:58px;flex:none;display:flex;align-items:center;gap:14px;padding:0 28px;background:#fff;border-bottom:1px solid var(--line)}.brand-status{font-size:12px;font-weight:650;letter-spacing:.01em}.online{display:inline-block;width:6px;height:6px;margin-left:5px;vertical-align:middle;border-radius:50%;background:#2ab67a;box-shadow:0 0 0 3px #e4f7ed}.top-spacer{flex:1}.ai-toggle{display:flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid var(--line);border-radius:9px;background:#fff;color:#667488;font-size:12px;transition:border-color .2s,background .2s}.ai-toggle:hover{border-color:#b7d6f8}.ai-toggle input{accent-color:var(--blue);margin:0}.content{flex:1;min-height:0;overflow:auto;padding:28px 28px 24px;scroll-behavior:smooth}.stage{max-width:920px;margin:0 auto}.hero{position:relative;overflow:hidden;padding:21px 24px 19px;border:1px solid #e5edf7;border-radius:15px;background:linear-gradient(115deg,#fff 0%,#f4f8ff 100%);box-shadow:0 4px 16px rgba(34,65,105,.025);animation:rise .45s var(--ease) both}.hero:after{content:"₽";position:absolute;right:24px;top:-24px;font-size:94px;font-weight:300;color:#e5f0ff;line-height:1;pointer-events:none}.hero h1{position:relative;z-index:1;margin:0 0 5px;font-size:22px;line-height:1.35;letter-spacing:-.025em;font-weight:700}.hero p{position:relative;z-index:1;margin:0;color:#7b8797;font-size:12px}.actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0 18px}.action-card{display:flex;align-items:center;gap:11px;min-height:59px;padding:12px 14px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:11px;color:var(--ink);transition:transform .22s var(--ease),border-color .22s,box-shadow .22s,background .22s;animation:rise .45s var(--ease) both}.action-card:nth-child(2){animation-delay:.04s}.action-card:nth-child(3){animation-delay:.08s}.action-card:nth-child(4){animation-delay:.12s}.action-card:hover{transform:translateY(-2px);border-color:#c6ddf7;box-shadow:0 7px 18px rgba(30,85,145,.07);background:#fcfdff}.action-icon{display:grid;place-items:center;flex:none;width:22px;height:22px;color:#3983ca;font-size:16px}.action-card strong{display:block;font-size:12px;font-weight:650;line-height:1.35}.action-card small{display:block;margin-top:2px;color:#8994a3;font-size:11px;line-height:1.35}
+.log{display:flex;flex-direction:column;gap:15px;padding:0 0 10px}.msg{display:flex;align-items:flex-start;gap:10px;max-width:90%;animation:rise .28s var(--ease) both}.msg.user{align-self:flex-end;flex-direction:row-reverse}.avatar{display:flex;align-items:center;justify-content:center;flex:none;width:26px;height:26px;border:1px solid var(--line);border-radius:50%;background:#fff;color:#63748b;font-size:10px;font-weight:650;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:contain;padding:3px}.user .avatar{background:#eaf3ff;border-color:#d6e8ff;color:#2e73b9}.bubble{min-width:0;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:4px 13px 13px 13px;box-shadow:0 2px 8px rgba(25,45,75,.025);line-height:1.6;white-space:pre-wrap}.user .bubble{background:#eff6ff;border-color:#d9eaff;border-radius:13px 4px 13px 13px}.tag{margin-bottom:5px;color:#8995a4;font-size:10px;font-weight:550}.text{font-size:13px}.sources{margin-top:12px;padding-top:9px;border-top:1px dashed var(--line);color:#748196;font-size:12px}.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.chips button{padding:6px 10px;border:1px solid #d6e6f7;border-radius:20px;background:#fff;color:#4b7eaf;font-size:11px;transition:background .2s,border-color .2s,transform .2s}.chips button:hover{background:#eef6ff;border-color:#a9cbed;transform:translateY(-1px)}pre{overflow:auto;white-space:pre-wrap;background:#f7f9fc;border:1px solid var(--line);border-radius:8px;padding:12px;font:12px/1.55 ui-monospace,SFMono-Regular,monospace}.typing{display:flex;gap:4px;align-items:center;padding:13px 15px}.typing i{width:5px;height:5px;border-radius:50%;background:#8ba1bb;animation:dot 1s infinite ease-in-out}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+.compose{flex:none;padding:12px 28px 10px;background:#fff;border-top:1px solid var(--line)}.compose-inner{max-width:920px;margin:auto}.docbar{display:none;align-items:center;gap:10px;margin:0 auto 9px;padding:8px 10px 8px 13px;border:1px solid #d8e8fb;border-radius:10px;background:#f1f7ff;font-size:12px}.docbar.on{display:flex;animation:rise .2s ease both}.docbar .nm{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}.docbar small{color:#8592a4}.docbar button{border:1px solid #f1c7c4;border-radius:20px;background:#fff;color:#b64e48;padding:4px 10px;font-size:11px;transition:background .2s}.docbar button:hover{background:#fff0ef}.input-wrap{display:flex;align-items:center;gap:10px;padding:5px 6px 5px 13px;border:1px solid #dfe6ee;border-radius:24px;background:#fff;transition:border-color .2s,box-shadow .2s}.input-wrap:focus-within{border-color:#8dbcf0;box-shadow:0 0 0 3px rgba(25,118,220,.08)}.clip{display:flex;align-items:center;justify-content:center;width:22px;height:30px;color:#8596aa;cursor:pointer;transition:color .2s}.clip:hover{color:var(--blue)}.clip svg{width:17px;height:17px;fill:currentColor}.q{flex:1;min-width:0;padding:8px 0;border:0;outline:0;background:transparent;color:var(--ink);font-size:12px}.q::placeholder{color:#9aa5b4}.send{display:grid;place-items:center;width:32px;height:32px;flex:none;border:0;border-radius:50%;background:var(--blue);color:#fff;transition:background .2s,transform .2s,box-shadow .2s}.send:hover{background:var(--blue-dark);transform:scale(1.05);box-shadow:0 3px 8px #1976dc35}.send:active{transform:scale(.96)}.send svg{width:15px;height:15px;fill:currentColor}.hint{padding:5px 13px 0;color:#9aa4b1;font-size:10px}.hint.error{color:#b64e48}
+@keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}@keyframes dot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+@media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{display:none}.topbar{height:54px;padding:0 14px}.content{padding:18px 14px}.compose{padding:10px 14px}.hero{padding:19px 18px}.hero h1{font-size:20px}.hero:after{right:10px;font-size:78px}.actions{gap:8px}.action-card{padding:10px;gap:7px}.msg{max-width:100%}.ai-toggle{font-size:11px;padding:6px 8px}}@media(max-width:440px){.actions{grid-template-columns:1fr}.action-card{min-height:54px}.hero:after{opacity:.55}.brand-status{font-size:11px}.topbar{gap:7px}.ai-toggle{gap:5px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+/* --- отмена запроса --- */
+.send-slot{position:relative;width:32px;height:32px;flex:none}
+.send-slot>button{position:absolute;left:0;top:0}
+.send{transition:background .2s,transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .2s,opacity .2s}
+.input-wrap.busy .send{opacity:0;transform:scale(.5) rotate(-35deg);pointer-events:none;box-shadow:none}
+.stop{display:grid;place-items:center;width:32px;height:32px;border:0;border-radius:50%;background:#2a3a52;color:#fff;cursor:pointer;opacity:0;transform:scale(.5) rotate(35deg);pointer-events:none;transition:opacity .2s,transform .28s cubic-bezier(.2,.8,.2,1),background .2s,box-shadow .2s}
+.stop .sq{width:10px;height:10px;border-radius:2.5px;background:currentColor;transition:border-radius .2s,transform .2s}
+.stop .ring{position:absolute;inset:-4px;border-radius:50%;border:2px solid transparent;border-top-color:var(--blue);border-right-color:#a9cdf5;opacity:0;transition:opacity .25s,border-color .2s;animation:stopspin 1.05s linear infinite}
+.input-wrap.busy .stop{opacity:1;transform:none;pointer-events:auto}
+.input-wrap.busy .stop .ring{opacity:1}
+.input-wrap.busy .stop:hover{background:#c8423a;transform:scale(1.06);box-shadow:0 3px 9px rgba(200,66,58,.3)}
+.input-wrap.busy .stop:hover .ring{border-top-color:#e58a84;border-right-color:#f3c5c1}
+.input-wrap.busy .stop:hover .sq{transform:scale(.9)}
+.input-wrap.busy .stop:active{transform:scale(.94)}
+.stop:focus-visible{outline:2px solid #8dbcf0;outline-offset:3px}
+@keyframes stopspin{to{transform:rotate(360deg)}}
+.typing .tl{margin-left:8px;color:#8596aa;font-size:12px;white-space:nowrap}.typing .tl:empty{display:none}
+.cancel-link{margin-left:10px;padding:3px 10px;border:1px solid #e0e7f0;border-radius:999px;background:#fff;color:#5d7088;font-size:11.5px;line-height:1.4;cursor:pointer;opacity:0;transform:translateX(-5px);animation:cancelIn .4s ease 1.4s forwards;transition:color .2s,border-color .2s,background .2s}
+.cancel-link:hover{color:#b64e48;border-color:#efc9c6;background:#fff6f5}
+.cancel-link:focus-visible{outline:2px solid #8dbcf0;outline-offset:2px}
+@keyframes cancelIn{to{opacity:1;transform:none}}
+.note{align-self:center;display:flex;align-items:center;gap:8px;padding:5px 13px;border-radius:999px;background:#f2f5f9;color:#7d8b9d;font-size:12px;animation:rise .3s both}
+.note:before{content:"";width:7px;height:7px;border-radius:2px;background:#b6c1cf}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><img src="/static/bank-logo.svg" alt="Банк России"></div>
+    <nav class="nav" aria-label="Основная навигация">
+      <a class="active" href="/" aria-current="page"><span class="nav-icon">▣</span>Чат-бот</a>
+      <a href="/admin"><span class="nav-icon">▱</span>Админ-панель</a>
+    </nav>
+    <div class="side-foot">Внутренний сервис<br>Версия демо · 2026</div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div class="brand-status">Банк России <span class="online" aria-label="В сети"></span></div>
+      <span class="top-spacer"></span>
+      <label class="ai-toggle"><input id="ai" type="checkbox"> ИИ-режим</label>
+    </header>
+    <section class="content" aria-label="Чат с документами">
+      <div class="stage">
+        <section class="hero">
+          <h1>Чат-бот по работе<br>с документами</h1>
+          <p>Найдёт требования, поможет с проектом и подскажет маршрут согласования.</p>
+        </section>
+        <div class="actions" aria-label="Быстрые действия">
+          <button class="action-card" type="button" data-q="Мне нужно подготовить приказ о вводе информационной системы в эксплуатацию. Что для этого нужно сделать?"><span class="action-icon">▣</span><span><strong>Подготовить документ</strong><small>Шаблон и черновик проекта</small></span></button>
+          <button class="action-card" type="button" data-q="Я подготовил приказ на основе модульного документа. Проверь его, пожалуйста."><span class="action-icon">✓</span><span><strong>Проверить проект</strong><small>Загрузите документ для проверки</small></span></button>
+          <button class="action-card" type="button" data-q="Подскажи маршрут согласования и визирования документа."><span class="action-icon">◷</span><span><strong>Согласование и визирование</strong><small>Маршрут, участники, порядок</small></span></button>
+          <button class="action-card" type="button" data-q="Покажи реестр замечаний и объясни, как его заполнить."><span class="action-icon">▤</span><span><strong>Реестр замечаний</strong><small>Таблица для отработки замечаний</small></span></button>
+        </div>
+        <div id="log" class="log" aria-live="polite"></div>
+      </div>
+    </section>
+    <footer class="compose">
+      <div class="compose-inner">
+        <div id="docbar" class="docbar"><span aria-hidden="true">📎</span><span class="nm"></span><small>готов к проверке</small><button type="button" id="docdel">Удалить</button></div>
+        <form id="form">
+          <div class="input-wrap">
+            <label class="clip" title="Прикрепить документ" aria-label="Прикрепить документ">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"/></svg>
+              <input id="file" type="file" hidden accept=".pdf,.docx,.txt,.md">
+            </label>
+            <input id="q" class="q" placeholder="Напишите сообщение…" autocomplete="off" aria-label="Сообщение">
+            <span class="send-slot"><button class="send" title="Отправить" aria-label="Отправить сообщение"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button><button class="stop" id="stop" type="button" title="Остановить (Esc)" aria-label="Остановить ответ" tabindex="-1" disabled><span class="ring" aria-hidden="true"></span><i class="sq" aria-hidden="true"></i></button></span>
+          </div>
+        </form>
+        <div id="hint" class="hint">Ответы формируются на основе материалов базы знаний.</div>
+      </div>
+    </footer>
+  </main>
+</div>
+<script>
+let sid=null,docId=null;
+const hist=[];
+const log=document.querySelector('#log'),q=document.querySelector('#q'),content=document.querySelector('.content');
+const labels={answered:'Ответ',clarification:'Нужно уточнение',refusal:'Нет в базе знаний',template:'Шаблон',draft:'Черновик',check:'Проверка документа',dialog:'Диалог'};
+const avatar=user=>user?'<div class="avatar">Вы</div>':'<div class="avatar"><img src="/static/bank-logo.svg" alt="Банк России"></div>';
+function add(type,text){const m=document.createElement('div');m.className='msg '+type;m.innerHTML=avatar(type==='user')+'<div class="bubble"></div>';m.querySelector('.bubble').textContent=text;log.append(m);m.scrollIntoView({block:'nearest',behavior:'smooth'});return m}
+let ctl=null;
+function cancelRequest(){if(ctl)ctl.abort()}
+function setBusy(on){document.querySelector('.input-wrap').classList.toggle('busy',on);document.querySelector('.send').disabled=on;const st=document.querySelector('#stop');st.disabled=!on;st.tabIndex=on?0:-1}
+function note(text){const n=document.createElement('div');n.className='note';n.textContent=text;log.append(n);n.scrollIntoView({block:'nearest',behavior:'smooth'})}
+function wait(cancelable){const m=document.createElement('div');m.className='msg bot';m.innerHTML=avatar(false)+'<div class="bubble typing" aria-label="Формируется ответ"><i></i><i></i><i></i>'+(cancelable?'<span class="tl"></span><button type="button" class="cancel-link">Отменить</button>':'')+'</div>';
+if(cancelable){const tl=m.querySelector('.tl'),t0=Date.now(),id=setInterval(()=>{if(!m.isConnected){clearInterval(id);return}const sec=Math.floor((Date.now()-t0)/1000);if(sec>=4)tl.textContent='Формирую ответ · '+sec+' с'},1000);m.querySelector('.cancel-link').onclick=cancelRequest}
+log.append(m);m.scrollIntoView({block:'nearest',behavior:'smooth'});return m}
+function render(r){const m=add('bot',''),b=m.querySelector('.bubble');b.innerHTML='<div class="tag"></div><div class="text"></div>';b.querySelector('.tag').textContent=(labels[r.status]||r.status||'Ответ')+' · '+(r.mode||'rules');b.querySelector('.text').textContent=r.answer||'Нет текста ответа.';
+if(r.draft){const p=document.createElement('pre');p.textContent=r.draft;b.append(p)}
+if(r.sources?.length){const s=document.createElement('div');s.className='sources';const title=document.createElement('b');title.textContent='Источники:';s.append(title,document.createElement('br'));r.sources.forEach((x,i)=>{if(i)s.append(document.createElement('br'));s.append(document.createTextNode('• '+(x.section||x.title||'Материал базы знаний')))});b.append(s)}
+if(r.suggestions?.length){const c=document.createElement('div');c.className='chips';r.suggestions.forEach(x=>{const z=document.createElement('button');z.type='button';z.textContent=x;z.onclick=()=>send(x);c.append(z)});b.append(c)}}
+async function send(text){const t=String(text||'').trim();if(!t||ctl)return;hist.push(t);add('user',t);q.value='';ctl=new AbortController();const signal=ctl.signal;const pending=wait(true);setBusy(true);
+try{const res=await fetch('/api/chat',{method:'POST',signal,headers:{'Content-Type':'application/json','X-Role':'employee'},body:JSON.stringify({message:t,session_id:sid,ai_mode:document.querySelector('#ai').checked})});const r=await res.json();if(!res.ok)throw Error(r.detail||'Не удалось получить ответ');sid=r.session_id;render(r)}
+catch(e){if(e.name==='AbortError'){note('Запрос отменён');if(!q.value)q.value=t}else add('bot','Не удалось получить ответ: '+e.message)}finally{pending.remove();ctl=null;setBusy(false);q.focus()}}
+document.querySelector('#stop').onclick=cancelRequest;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&ctl){e.preventDefault();cancelRequest()}});
+function showDoc(id,name){docId=id;const bar=document.querySelector('#docbar');bar.querySelector('.nm').textContent=name;bar.querySelector('.nm').title=name;bar.classList.add('on')}
+function hideDoc(){docId=null;document.querySelector('#docbar').classList.remove('on')}
+async function delDoc(){if(!docId||!sid)return;const btn=document.querySelector('#docdel'),name=document.querySelector('#docbar .nm').textContent;if(!confirm('Удалить загруженный документ «'+name+'»?'))return;btn.disabled=true;
+try{const res=await fetch('/api/upload/'+encodeURIComponent(docId)+'?session_id='+encodeURIComponent(sid),{method:'DELETE'});if(res.ok){hideDoc();add('bot','Документ «'+name+'» удалён. Чтобы проверить другой проект, загрузите его кнопкой со скрепкой.')}else if(res.status===404){hideDoc();add('bot','Документ уже удалён или сессия устарела — загрузите файл заново.')}else{const r=await res.json().catch(()=>({}));throw Error(r.detail||'Ошибка удаления')}}catch(e){add('bot','Не удалось удалить документ: '+e.message)}finally{btn.disabled=false}}
+document.querySelector('#docdel').onclick=delDoc;
+document.querySelector('#form').onsubmit=e=>{e.preventDefault();send(q.value)};
+document.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>send(b.dataset.q));
+document.querySelector('#file').onchange=async e=>{const f=e.target.files[0];if(!f)return;const allowed=/\.(pdf|docx|txt|md)$/i;if(!allowed.test(f.name)){add('bot','Поддерживаются файлы PDF, DOCX, TXT и MD.');e.target.value='';return}const d=new FormData();d.append('file',f);if(sid)d.append('session_id',sid);add('user','Файл: '+f.name);const pending=wait();
+try{const res=await fetch('/api/upload',{method:'POST',body:d}),r=await res.json();if(!res.ok)throw Error(r.detail||'Ошибка загрузки');sid=r.session_id;showDoc(r.document_id,r.filename);await send('Проверь загруженный документ')}catch(err){add('bot','Не удалось загрузить файл: '+err.message)}finally{pending.remove();e.target.value=''}};
+fetch('/api/health').then(r=>r.json()).then(h=>{const aiText=h.cloud_configured?'ИИ-режим доступен':'ИИ-режим: не настроен ключ OpenRouter';document.querySelector('#hint').textContent=`База знаний: ${h.kb?.chunks??'—'} положений · ${aiText}`;if(!h.cloud_configured)document.querySelector('#hint').classList.add('error')}).catch(()=>{});
+render({answer:'Здравствуйте! Помогу найти требования, подобрать модуль, сформировать черновик или проверить готовый проект.',status:'answered',sources:[],suggestions:['Подготовить приказ о вводе ИС','Проверить готовый проект'],mode:'rules'});
+</script>
+</body>
+</html>
